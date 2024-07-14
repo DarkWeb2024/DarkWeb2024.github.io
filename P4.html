@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Web</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        header {
+            background-color: #1f1f1f;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #1f1f1f;
+            text-align: center;
+            padding: 10px;
+            border-top: 1px solid #333;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .code-container {
+            background-color: #1f1f1f;
+            border: 1px solid #333;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .code-container pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .copy-button:hover {
+            background-color: #555;
+        }
+    </style>
+    <script>
+        function copyToClipboard(elementId) {
+            var copyText = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(copyText).then(function() {
+                alert("Copied to clipboard");
+            }, function(err) {
+                console.error("Error copying text: ", err);
+            });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Dark Web</h1>
+        <nav>
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+        </nav>
+    </header>
+
+    <main>
+        <h2></h2>
+        <p></p>
+        
+        <h2>Program-4 ANN</h2>
+        <div class="code-container">
+            <pre id="code-block">
+import numpy as np
+import pandas as pd
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+
+iris = load_iris()
+X = iris.data
+y = iris.target.reshape(-1, 1)
+
+encoder = OneHotEncoder(sparse_output=False)
+y = encoder.fit_transform(y)
+
+scaler = StandardScaler()
+X = scaler.fit_transform(X)
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+class NeuralNetwork:
+    def __init__(self, input_size, hidden_size, output_size, learning_rate):
+        self.W1 = np.random.randn(input_size, hidden_size)
+        self.b1 = np.zeros((1, hidden_size))
+        self.W2 = np.random.randn(hidden_size, output_size)
+        self.b2 = np.zeros((1, output_size))
+        self.learning_rate = learning_rate
+
+    def sigmoid(self, x):
+        return 1 / (1 + np.exp(-x))
+
+    def sigmoid_derivative(self, x):
+        return x * (1 - x)
+
+    def forward(self, X):
+        self.z1 = np.dot(X, self.W1) + self.b1
+        self.a1 = self.sigmoid(self.z1)
+        self.z2 = np.dot(self.a1, self.W2) + self.b2
+        self.a2 = self.sigmoid(self.z2)
+        return self.a2
+
+    def backward(self, X, y, output):
+        m = y.shape[0]
+        error_output = output - y
+        dW2 = np.dot(self.a1.T, error_output) / m
+        db2 = np.sum(error_output, axis=0, keepdims=True) / m
+
+        error_hidden = np.dot(error_output, self.W2.T) * self.sigmoid_derivative(self.a1)
+        dW1 = np.dot(X.T, error_hidden) / m
+        db1 = np.sum(error_hidden, axis=0, keepdims=True) / m
+
+        self.W2 -= self.learning_rate * dW2
+        self.b2 -= self.learning_rate * db2
+        self.W1 -= self.learning_rate * dW1
+        self.b1 -= self.learning_rate * db1
+
+    def train(self, X, y, epochs):
+        for epoch in range(epochs):
+            output = self.forward(X)
+            self.backward(X, y, output)
+            if epoch % 100 == 0:
+                loss = np.mean(np.square(y - output))
+                print(f'Epoch {epoch}, Loss: {loss}')
+
+    def predict(self, X):
+        output = self.forward(X)
+        return np.argmax(output, axis=1)
+
+if __name__ == "__main__":
+    input_size = X_train.shape[1]
+    hidden_size = 10
+    output_size = y_train.shape[1]
+    learning_rate = 0.01
+    epochs = 1000
+
+    nn = NeuralNetwork(input_size, hidden_size, output_size, learning_rate)
+
+    nn.train(X_train, y_train, epochs)
+
+    y_pred = nn.predict(X_test)
+
+    y_test_labels = np.argmax(y_test, axis=1)
+
+    accuracy = np.mean(y_pred == y_test_labels)
+    print(f'Accuracy: {accuracy * 100}%')
+</pre>
+            <button class="copy-button" onclick="copyToClipboard('code-block')">Copy</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Dark Web. All rights reserved.</p>
+    </footer>
+</body>
+</html>

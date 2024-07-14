@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Web</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        header {
+            background-color: #1f1f1f;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #1f1f1f;
+            text-align: center;
+            padding: 10px;
+            border-top: 1px solid #333;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .code-container {
+            background-color: #1f1f1f;
+            border: 1px solid #333;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .code-container pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .copy-button:hover {
+            background-color: #555;
+        }
+    </style>
+    <script>
+        function copyToClipboard(elementId) {
+            var copyText = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(copyText).then(function() {
+                alert("Copied to clipboard");
+            }, function(err) {
+                console.error("Error copying text: ", err);
+            });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Dark Web</h1>
+        <nav>
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+        </nav>
+    </header>
+
+    <main>
+        <h2></h2>
+        <p></p>
+        
+        <h2>Program-3 ID-3</h2>
+        <div class="code-container">
+            <pre id="code-block">
+from sklearn.datasets import load_iris
+import pandas as pd
+
+iris = load_iris()
+data = pd.DataFrame(iris.data, columns=iris.feature_names)
+data['species'] = iris.target
+data['species'] = data['species'].map({0: 'setosa', 1: 'versicolor', 2: 'virginica'})
+
+print(data.head())
+
+import numpy as np
+
+def entropy(s):
+    _, counts = np.unique(s, return_counts=True)
+    probabilities = counts / len(s)
+    return -sum(prob * np.log2(prob) for prob in probabilities if prob > 0)
+
+def information_gain(data, feature, target):
+    total_entropy = entropy(data[target])
+    values, counts = np.unique(data[feature], return_counts=True)
+    weighted_entropy = sum((counts[i] / sum(counts)) * entropy(data[data[feature] == values[i]][target]) for i in range(len(values)))
+    return total_entropy - weighted_entropy
+
+def id3(data, original_data, features, target, parent_node_class=None):
+    if len(np.unique(data[target])) == 1:
+        return np.unique(data[target])[0]
+    elif len(data) == 0:
+        return np.unique(original_data[target])[np.argmax(np.unique(original_data[target], return_counts=True)[1])]
+    elif len(features) == 0:
+        return parent_node_class
+    else:
+        parent_node_class = np.unique(data[target])[np.argmax(np.unique(data[target], return_counts=True)[1])]
+        item_values = [information_gain(data, feature, target) for feature in features]
+        best_feature_index = np.argmax(item_values)
+        best_feature = features[best_feature_index]
+        tree = {best_feature: {}}
+        features = [i for i in features if i != best_feature]
+        for value in np.unique(data[best_feature]):
+            sub_data = data[data[best_feature] == value]
+            subtree = id3(sub_data, original_data, features, target, parent_node_class)
+            tree[best_feature][value] = subtree
+        return tree
+    
+features = data.columns[:-1]
+target = 'species'
+
+tree = id3(data, data, features, target)
+
+import pprint
+pprint.pprint(tree)
+
+def classify(sample, tree):
+    for attribute in tree.keys():
+        value = sample[attribute]
+        if value in tree[attribute]:
+            subtree = tree[attribute][value]
+            if isinstance(subtree, dict):
+                return classify(sample, subtree)
+            else:
+                return subtree
+
+new_sample = {'sepal length (cm)': 5.1, 'sepal width (cm)': 3.5, 'petal length (cm)': 1.4, 'petal width (cm)': 0.2}
+
+prediction = classify(new_sample, tree)
+print(f"The new sample is classified as: {prediction}")
+</pre>
+            <button class="copy-button" onclick="copyToClipboard('code-block')">Copy</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Dark Web. All rights reserved.</p>
+    </footer>
+</body>
+</html>
