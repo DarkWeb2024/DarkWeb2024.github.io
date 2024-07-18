@@ -71,6 +71,21 @@
         .copy-button:hover {
             background-color: #555;
         }
+
+        .download-button {
+            position: absolute;
+            top: 10px;
+            right: 90px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .download-button:hover {
+            background-color: #555;
+        }
     </style>
     <script>
         function copyToClipboard(elementId) {
@@ -80,6 +95,28 @@
             }, function(err) {
                 console.error("Error copying text: ", err);
             });
+        }
+
+        async function downloadCSV() {
+            const csvLink = 'Book2.csv';  // Replace with your CSV file link
+            try {
+                const response = await fetch(csvLink);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = 'Book2.csv';  // Replace with your desired file name
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+            } catch (error) {
+                console.error('There has been a problem with your fetch operation:', error);
+            }
         }
     </script>
 </head>
@@ -99,7 +136,7 @@
         <p></p>
         
         <h2>Program-2 Candidate Elimination Method</h2>
-            <p><a href="https://drive.google.com/file/d/1_XfAz4T9QhO_folB1N-nu1jPcc7UGQ8U/view?usp=sharing" target="_blank">ML P-2 Dataset Link</a></p>
+        <p><a href="https://drive.google.com/file/d/1_XfAz4T9QhO_folB1N-nu1jPcc7UGQ8U/view?usp=sharing" target="_blank">ML P-2 Dataset Link</a></p>
         <div class="code-container">
             <pre id="code-block">
 import numpy as np
@@ -141,6 +178,7 @@ print("final specific_h: ",s_final,sep="\n")
 print("final general_h: ",g_final,sep="\n")
 </pre>
             <button class="copy-button" onclick="copyToClipboard('code-block')">Copy</button>
+            <button class="download-button" onclick="downloadCSV()">Download CSV</button>
         </div>
     <p><a href="https://drive.google.com/file/d/1_XfAz4T9QhO_folB1N-nu1jPcc7UGQ8U/view?usp=sharing" target="_blank">ML P-2 Dataset Link</a></p>
     </main>
