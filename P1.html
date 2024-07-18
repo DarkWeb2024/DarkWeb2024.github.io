@@ -71,6 +71,21 @@
         .copy-button:hover {
             background-color: #555;
         }
+
+        .download-button {
+            position: absolute;
+            top: 10px;
+            right: 90px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .download-button:hover {
+            background-color: #555;
+        }
     </style>
     <script>
         function copyToClipboard(elementId) {
@@ -80,6 +95,28 @@
             }, function(err) {
                 console.error("Error copying text: ", err);
             });
+        }
+
+        async function downloadCSV() {
+            const csvLink = 'https://drive.google.com/file/d/1k_s0D1qGgHqVYtLuXDzR-tT663ReKqQ-/view?usp=sharing';  // Replace with your CSV file link
+            try {
+                const response = await fetch(csvLink);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = 'EnjoySport.csv';  // Replace with your desired file name
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+            } catch (error) {
+                console.error('There has been a problem with your fetch operation:', error);
+            }
         }
     </script>
 </head>
@@ -96,17 +133,16 @@
 
     <main>
         <h2></h2>
+        <p></p>
+        
         <h2>Program-1 Find-S</h2>
-        <p><a href="https://drive.google.com/file/d/1k_s0D1qGgHqVYtLuXDzR-tT663ReKqQ-/view?usp=sharing" target="_blank">ML P-1 Dataset Link</a></p>
-        
-        
         <div class="code-container">
             <pre id="code-block">
 import csv
 num_attributes = 6
 a = []
 print("\n The Given Training Dataset \n")
-with open(r"C:\EnjoySport01.csv") as csvfile:
+with open(r"C:\EnjoySport.csv") as csvfile:
     reader = csv.reader(csvfile)
     for row in reader:
         a.append(row)
@@ -128,8 +164,8 @@ for i in range(0,len(a)):
 print("\n The Maximally Specific Hypothesis for a given Training Examples :\n")
 print(hypothesis)                        </pre>
             <button class="copy-button" onclick="copyToClipboard('code-block')">Copy</button>
+            <button class="download-button" onclick="downloadCSV()">Download CSV</button>
         </div>
-    <p><a href="https://drive.google.com/file/d/1k_s0D1qGgHqVYtLuXDzR-tT663ReKqQ-/view?usp=sharing" target="_blank">ML P-1 Dataset Link</a></p>
     </main>
 
     <footer>
