@@ -20,6 +20,16 @@
             border-bottom: 1px solid #333;
         }
 
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
         main {
             padding: 20px;
         }
@@ -34,27 +44,125 @@
             bottom: 0;
         }
 
-        a {
-            color: #1e90ff;
-            text-decoration: none;
+        .code-container {
+            background-color: #1f1f1f;
+            border: 1px solid #333;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
         }
 
-        a:hover {
-            text-decoration: underline;
+        .code-container pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .copy-button:hover {
+            background-color: #555;
+        }
+
+        .download-button {
+            position: absolute;
+            top: 10px;
+            right: 90px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .download-button:hover {
+            background-color: #555;
         }
     </style>
+    <script>
+        function copyToClipboard(elementId) {
+            var copyText = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(copyText).then(function() {
+                alert("Copied to clipboard");
+            }, function(err) {
+                console.error("Error copying text: ", err);
+            });
+        }
+
+        async function downloadCSV1() {
+            const csvLink = '1233.docx';  // Replace with your CSV file link
+            try {
+                const response = await fetch(csvLink);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = '1233.docx';  // Replace with your desired file name
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+            } catch (error) {
+                console.error('There has been a problem with your fetch operation:', error);
+            }
+        }
+        }
+
+        async function downloadCSV2() {
+            const csvLink = '21CS62 Fullstack Django Lab Manuals Search Creators.pdf';  // Replace with your CSV file link
+            try {
+                const response = await fetch(csvLink);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = '21CS62 Fullstack Django Lab Manuals Search Creators.pdf';  // Replace with your desired file name
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+            } catch (error) {
+                console.error('There has been a problem with your fetch operation:', error);
+            }
+        }
+    </script>
 </head>
 <body>
     <header>
         <h1>Dark Web</h1>
+        <nav>
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+        </nav>
     </header>
 
     <main>
-        <h3>Program Links</h3>
-        <p><a href="P1.html" target="_blank">ML Program-1 Link</a></p>
-        <p><a href="P2.html" target="_blank">ML Program-2 Link</a></p>
-        <p>----------------------------------------------------------------</p>
-        <p><a href="https://drive.google.com/drive/folders/1IRI7SmVAC-DH3UR9q0emMgY2S-00TcZR" target="_blank"> ML Programs PDF</p>
+        <h2></h2>
+        <p></p>
+        
+        <h2>Program-1 Find-S</h2>
+        <a href="ML P1 Find S Algorithm.html" target="_blank">Overview ML P1 Find S Algorithm</a>
+        <button class="download-button" onclick="downloadCSV1()">Download 1233.docx</button>
+        <button class="download-button" onclick="downloadCSV2()">Download 21CS62 Fullstack Django Lab Manuals Search Creators.pdf</button>
+        </div>
     </main>
 
     <footer>
