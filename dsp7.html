@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Web</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        header {
+            background-color: #1f1f1f;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #1f1f1f;
+            text-align: center;
+            padding: 10px;
+            border-top: 1px solid #333;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .code-container {
+            background-color: #1f1f1f;
+            border: 1px solid #333;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .code-container pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .copy-button:hover {
+            background-color: #555;
+        }
+    </style>
+    <script>
+        function copyToClipboard(elementId) {
+            var copyText = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(copyText).then(function() {
+                alert("Copied to clipboard");
+            }, function(err) {
+                console.error("Error copying text: ", err);
+            });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Dark Web</h1>
+        <nav>
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+        </nav>
+    </header>
+
+    <main>
+        <h2></h2>
+        <p></p>
+        
+        <h2>Module-4 P-7 Clustering Spral.txt dataset</h2>
+        <a href="Module-4 P-7 Clustering Spral.txt dataset.html" target="_blank">Overview Module-4 P-7 Clustering Spral.txt dataset</a>
+        <div class="code-container">
+            <pre id="code-block">
+import numpy as np
+from sklearn.cluster import KMeans, AgglomerativeClustering
+from sklearn.metrics import adjusted_rand_score
+import matplotlib.pyplot as plt
+
+data = np.loadtxt(r"C:\Users\HACKME\Downloads\Spiral.txt", delimiter=",", skiprows=1)
+X = data[:, :2]
+y_true = data[:, 2]
+
+plt.figure(figsize=(8, 6))
+plt.scatter(X[:, 0], X[:, 1], c=y_true, cmap='viridis')
+plt.title('True Clusters')
+plt.xlabel('X1')
+plt.ylabel('X2')
+plt.show()
+
+kmeans = KMeans(n_clusters=3, random_state=42, n_init=10)
+kmeans_clusters = kmeans.fit_predict(X)
+
+single_link = AgglomerativeClustering(n_clusters=3, linkage='single')
+single_link_clusters = single_link.fit_predict(X)
+
+complete_link = AgglomerativeClustering(n_clusters=3, linkage='complete')
+complete_link_clusters = complete_link.fit_predict(X)
+
+rand_index_kmeans = adjusted_rand_score(y_true, kmeans_clusters)
+rand_index_single_link = adjusted_rand_score(y_true, single_link_clusters)
+rand_index_complete_link = adjusted_rand_score(y_true, complete_link_clusters)
+
+print("Rand Index for K-means Clustering:", rand_index_kmeans)
+print("Rand Index for Single-link Hierarchical Clustering:", rand_index_single_link)
+print("Rand Index for Complete-link Hierarchical Clustering:", rand_index_complete_link)
+</pre>
+            <button class="copy-button" onclick="copyToClipboard('code-block')">Copy</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Dark Web. All rights reserved.</p>
+    </footer>
+</body>
+</html>
