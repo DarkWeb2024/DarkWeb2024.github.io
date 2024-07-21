@@ -20,16 +20,6 @@
             border-bottom: 1px solid #333;
         }
 
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            margin: 0 15px;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
         main {
             padding: 20px;
         }
@@ -57,46 +47,23 @@
             word-wrap: break-word;
         }
 
-        .copy-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #333;
-            color: #fff;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        .copy-button:hover {
-            background-color: #555;
-        }
-
         .download-button {
-            position: absolute;
-            top: 10px;
-            right: 90px;
-            background-color: #333;
+            display: block;
+            background-color: #1e90ff;
             color: #fff;
             border: none;
-            padding: 5px 10px;
+            padding: 10px 20px;
+            margin: 10px 0;
+            text-align: center;
+            text-decoration: none;
             cursor: pointer;
         }
 
         .download-button:hover {
-            background-color: #555;
+            background-color: #0f5a92;
         }
     </style>
     <script>
-        function copyToClipboard(elementId) {
-            var copyText = document.getElementById(elementId).innerText;
-            navigator.clipboard.writeText(copyText).then(function() {
-                alert("Copied to clipboard");
-            }, function(err) {
-                console.error("Error copying text: ", err);
-            });
-        }
-
         async function downloadCSV1() {
             const csvLink = 'LMFullStack.pdf';  // Replace with your CSV file link
             try {
@@ -117,14 +84,6 @@
             } catch (error) {
                 console.error('There has been a problem with your fetch operation:', error);
             }
-        }
-         function copyToClipboard(elementId) {
-            var copyText = document.getElementById(elementId).innerText;
-            navigator.clipboard.writeText(copyText).then(function() {
-                alert("Copied to clipboard");
-            }, function(err) {
-                console.error("Error copying text: ", err);
-            });
         }
 
         async function downloadCSV2() {
@@ -153,23 +112,14 @@
 <body>
     <header>
         <h1>Dark Web</h1>
-        <nav>
-            <a href="#"></a>
-            <a href="#"></a>
-            <a href="#"></a>
-            <a href="#"></a>
-        </nav>
     </header>
 
     <main>
-        <h2></h2>
-        <p></p>
-        
         <h2>Program-1 Find-S</h2>
         <a href="ML P1 Find S Algorithm.html" target="_blank">Overview ML P1 Find S Algorithm</a>
         <div class="code-container">
             <pre id="code-block">
-</pre>
+            </pre>
             <button class="download-button" onclick="downloadCSV1()">Download FullStack Lab-manual</button>
             <button class="download-button" onclick="downloadCSV2()">Download 1233.docx</button>
         </div>
