@@ -57,10 +57,9 @@
             word-wrap: break-word;
         }
 
-        .copy-button {
+        .copy-button, .download-button {
             position: absolute;
             top: 10px;
-            right: 10px;
             background-color: #333;
             color: #fff;
             border: none;
@@ -68,23 +67,16 @@
             cursor: pointer;
         }
 
-        .copy-button:hover {
+        .copy-button:hover, .download-button:hover {
             background-color: #555;
+        }
+
+        .copy-button {
+            right: 10px;
         }
 
         .download-button {
-            position: absolute;
-            top: 10px;
             right: 90px;
-            background-color: #333;
-            color: #fff;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        .download-button:hover {
-            background-color: #555;
         }
     </style>
     <script>
@@ -140,56 +132,61 @@
         <h3><a href="https://www.kaggle.com/datasets/farhakouser/bl-flickr-images-book-csv" target="_blank">Kaggle Book Dataset External link</a></h3>
         
         <div class="code-container">
-            <pre id="code-block">
+            <pre id="code-block-1">
 import pandas as pd
 import numpy as np
 import re
 dataset=pd.read_csv(r'C:\Users\HACKME\Downloads\BL-Flickr-Images-Book.csv')
 dataset.head()
-
             </pre>
-            <button class="copy-button" onclick="copyToClipboard('code-block')">Copy</button>
+            <button class="copy-button" onclick="copyToClipboard('code-block-1')">Copy</button>
             <button class="download-button" onclick="downloadCSV()">Download CSV</button>
         </div>
-      <div class="code-container">
-            <pre id="code-block">
+        
+        <div class="code-container">
+            <pre id="code-block-2">
 dataset.shape
             </pre>
-        <button class="copy-button" onclick="copyToClipboard('code-block')">Copy</button>
+            <button class="copy-button" onclick="copyToClipboard('code-block-2')">Copy</button>
         </div>
-            <div class="code-container">
-            <pre id="code-block">
+
+        <div class="code-container">
+            <pre id="code-block-3">
 dataset.isna().sum()
             </pre>
-        <button class="copy-button" onclick="copyToClipboard('code-block')">Copy</button>
+            <button class="copy-button" onclick="copyToClipboard('code-block-3')">Copy</button>
         </div>
-            <div class="code-container">
-            <pre id="code-block">
+
+        <div class="code-container">
+            <pre id="code-block-4">
 data1=dataset.drop(['Edition Statement','Publisher',"Author",'Corporate Author',"Corporate Contributors",'Former owner',"Engraver"],axis="columns")
 data1.head()
             </pre>
-        <button class="copy-button" onclick="copyToClipboard('code-block')">Copy</button>
+            <button class="copy-button" onclick="copyToClipboard('code-block-4')">Copy</button>
         </div>
-            <div class="code-container">
-            <pre id="code-block">
+
+        <div class="code-container">
+            <pre id="code-block-5">
 data1=data1.rename(columns={'Identifier':'ID_no'})
 data1.head()
             </pre>
-        <button class="copy-button" onclick="copyToClipboard('code-block')">Copy</button> 
+            <button class="copy-button" onclick="copyToClipboard('code-block-5')">Copy</button> 
         </div>
-    <p>---------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
-    <h3>Kaggle Login Credentials</h3>
+
+        <p>---------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+        <h3>Kaggle Login Credentials</h3>
         <div class="code-container">
-            <pre id="code-block">
+            <pre id="code-block-6">
 rakind04@signalance.com
             </pre>
-        <button class="copy-button" onclick="copyToClipboard('code-block')">Copy</button> 
+            <button class="copy-button" onclick="copyToClipboard('code-block-6')">Copy</button> 
         </div>
+
         <div class="code-container">
-            <pre id="code-block">
+            <pre id="code-block-7">
 Abcd1234
             </pre>
-        <button class="copy-button" onclick="copyToClipboard('code-block')">Copy</button> 
+            <button class="copy-button" onclick="copyToClipboard('code-block-7')">Copy</button> 
         </div>
     </main>
 
