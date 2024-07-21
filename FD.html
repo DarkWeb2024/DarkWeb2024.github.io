@@ -98,30 +98,7 @@
         }
 
         async function downloadCSV1() {
-            const csvLink = '1233.docx';  // Replace with your CSV file link
-            try {
-                const response = await fetch(csvLink);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                const blob = await response.blob();
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = url;
-                a.download = '1233.docx';  // Replace with your desired file name
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
-                document.body.removeChild(a);
-            } catch (error) {
-                console.error('There has been a problem with your fetch operation:', error);
-            }
-        }
-        }
-
-        async function downloadCSV2() {
-            const csvLink = '21CS62 Fullstack Django Lab Manuals Search Creators.pdf';  // Replace with your CSV file link
+            const csvLink = 'LMFullStack.pdf';  // Replace with your CSV file link
             try {
                 const response = await fetch(csvLink);
                 if (!response.ok) {
@@ -133,6 +110,36 @@
                 a.style.display = 'none';
                 a.href = url;
                 a.download = '21CS62 Fullstack Django Lab Manuals Search Creators.pdf';  // Replace with your desired file name
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+            } catch (error) {
+                console.error('There has been a problem with your fetch operation:', error);
+            }
+        }
+         function copyToClipboard(elementId) {
+            var copyText = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(copyText).then(function() {
+                alert("Copied to clipboard");
+            }, function(err) {
+                console.error("Error copying text: ", err);
+            });
+        }
+
+        async function downloadCSV2() {
+            const csvLink = 'FullStackText.docx';  // Replace with your CSV file link
+            try {
+                const response = await fetch(csvLink);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = '1233.docx';  // Replace with your desired file name
                 document.body.appendChild(a);
                 a.click();
                 window.URL.revokeObjectURL(url);
@@ -155,12 +162,16 @@
     </header>
 
     <main>
-        <h2>FD Programs</h2>
+        <h2></h2>
+        <p></p>
+        
+        <h2>Program-1 Find-S</h2>
+        <a href="ML P1 Find S Algorithm.html" target="_blank">Overview ML P1 Find S Algorithm</a>
         <div class="code-container">
             <pre id="code-block">
 </pre>
-        <button class="download-button" onclick="downloadCSV1()">Download 1233.docx</button>
-        <button class="download-button" onclick="downloadCSV2()">Download 21CS62 Fullstack Django Lab Manuals Search Creators.pdf</button>
+            <button class="download-button" onclick="downloadCSV1()">Download FullStack Lab-manual</button>
+            <button class="download-button" onclick="downloadCSV2()">Download 1233.docx</button>
         </div>
     </main>
 
