@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Web</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        header {
+            background-color: #1f1f1f;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #1f1f1f;
+            text-align: center;
+            padding: 10px;
+            border-top: 1px solid #333;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .code-container {
+            background-color: #1f1f1f;
+            border: 1px solid #333;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .code-container pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .copy-button:hover {
+            background-color: #555;
+        }
+    </style>
+    <script>
+        function copyToClipboard(elementId) {
+            var copyText = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(copyText).then(function() {
+                alert("Copied to clipboard");
+            }, function(err) {
+                console.error("Error copying text: ", err);
+            });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Dark Web</h1>
+        <nav>
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+        </nav>
+    </header>
+
+    <main>
+        <h2></h2>
+        <p></p>
+        
+        <h2>Module-3 P-4 Logistic Regression on iris dataset</h2>
+        <a href="Module-3 P-4 Logistic Regression on iris dataset.html" target="_blank">Overview Module-3 P-4 Logistic Regression on iris dataset</a>
+        <div class="code-container">
+            <pre id="code-block">
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import make_pipeline
+
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+pipeline = make_pipeline(StandardScaler(), LogisticRegression(C=1e4, max_iter=1000))
+
+pipeline.fit(X_train, y_train)
+
+accuracy = pipeline.score(X_test, y_test)
+print("Classification accuracy:", accuracy)
+            </pre>
+            <button class="copy-button" onclick="copyToClipboard('code-block')">Copy</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Dark Web. All rights reserved.</p>
+    </footer>
+</body>
+</html>
