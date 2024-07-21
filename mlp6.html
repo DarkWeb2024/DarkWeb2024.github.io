@@ -141,6 +141,9 @@
             <pre id="code-block">
 pip install pgmpy
             </pre>
+            <button class="copy-button" onclick="copyToClipboard('code-block')">Copy</button>
+            <button class="download-button" onclick="downloadCSV()">Download CSV</button>
+        </div>
             <div class="code-container">
             <pre id="code-block">
 import pandas as pd
@@ -185,7 +188,6 @@ q = HeartDisease_infer.query(variables=['heartdisease'], evidence={
 print(q)
             </pre>
             <button class="copy-button" onclick="copyToClipboard('code-block')">Copy</button>
-            <button class="download-button" onclick="downloadCSV()">Download CSV</button>
         </div>
     </main>
 
