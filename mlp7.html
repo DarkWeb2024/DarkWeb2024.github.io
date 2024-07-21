@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Web</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        header {
+            background-color: #1f1f1f;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #1f1f1f;
+            text-align: center;
+            padding: 10px;
+            border-top: 1px solid #333;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .code-container {
+            background-color: #1f1f1f;
+            border: 1px solid #333;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .code-container pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .copy-button:hover {
+            background-color: #555;
+        }
+    </style>
+    <script>
+        function copyToClipboard(elementId) {
+            var copyText = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(copyText).then(function() {
+                alert("Copied to clipboard");
+            }, function(err) {
+                console.error("Error copying text: ", err);
+            });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Dark Web</h1>
+        <nav>
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+        </nav>
+    </header>
+
+    <main>
+        <h2></h2>
+        
+        
+        <h2>Program-7 K-Means Clustering</h2>
+      <a href="ML P7 K-Means Clustering.html" target="_blank">Overview Program-7 K-Means Clustering</a>  
+      <div class="code-container">
+            <pre id="code-block">
+from sklearn.cluster import KMeans
+from sklearn import preprocessing
+from sklearn.mixture import GaussianMixture
+from sklearn.datasets import load_iris
+import sklearn.metrics as sm
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+dataset=load_iris()
+
+X=pd.DataFrame(dataset.data)
+X.columns=['Sepal_Length','Sepal_Width','Petal_Length','Petal_Width']
+y=pd.DataFrame(dataset.target)
+y.columns=['Targets']
+
+plt.figure(figsize=(14,7))
+colormap=np.array(['red','lime','black'])
+
+plt.subplot(1,3,1)
+plt.scatter(X.Petal_Length,X.Petal_Width,c=colormap[y.Targets],s=40)
+plt.title('Real')
+
+plt.subplot(1,3,2)
+model=KMeans(n_clusters=3)
+model.fit(X)
+predY=np.choose(model.labels_,[0,1,2]).astype(np.int64)
+plt.scatter(X.Petal_Length,X.Petal_Width,c=colormap[predY],s=40)
+plt.title('KMeans')
+
+scaler=preprocessing.StandardScaler()
+scaler.fit(X)
+xsa=scaler.transform(X)
+xs=pd.DataFrame(xsa,columns=X.columns)
+gmm=GaussianMixture(n_components=3)
+gmm.fit(xs)
+y_cluster_gmm=gmm.predict(xs)
+plt.subplot(1,3,3)
+plt.scatter(X.Petal_Length,X.Petal_Width,c=colormap[y_cluster_gmm],s=40)
+plt.title('GMM Classification')
+</pre>
+            <button class="copy-button" onclick="copyToClipboard('code-block')">Copy</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Dark Web. All rights reserved.</p>
+    </footer>
+</body>
+</html>
