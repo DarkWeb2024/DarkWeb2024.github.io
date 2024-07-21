@@ -98,7 +98,7 @@
         }
 
         async function downloadCSV() {
-            const csvLink = 'EnjoySport.csv';  // Replace with your CSV file link
+            const csvLink = 'BL-Flickr-Images-Book.csv';  // Replace with your CSV file link
             try {
                 const response = await fetch(csvLink);
                 if (!response.ok) {
@@ -109,7 +109,7 @@
                 const a = document.createElement('a');
                 a.style.display = 'none';
                 a.href = url;
-                a.download = 'EnjoySport.csv';  // Replace with your desired file name
+                a.download = 'BL-Flickr-Images-Book.csv';  // Replace with your desired file name
                 document.body.appendChild(a);
                 a.click();
                 window.URL.revokeObjectURL(url);
