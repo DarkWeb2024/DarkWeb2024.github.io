@@ -34,15 +34,94 @@
             bottom: 0;
         }
 
-        a {
-            color: #1e90ff;
-            text-decoration: none;
+        .code-container {
+            background-color: #1f1f1f;
+            border: 1px solid #333;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
         }
 
-        a:hover {
-            text-decoration: underline;
+        .code-container pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .download-button {
+            display: block;
+            background-color: #1e90ff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 0;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .download-button:hover {
+            background-color: #0f5a92;
         }
     </style>
+    <script>
+        async function downloadFile(url, filename) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                const blob = await response.blob();
+                const blobUrl = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = blobUrl;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(blobUrl);
+                document.body.removeChild(a);
+            } catch (error) {
+                console.error('There has been a problem with your fetch operation:', error);
+            }
+        }
+
+        function downloadCSV1() {
+            downloadFile('STLM.pdf', 'software testing laboratory manual.pdf');
+        }
+
+        function downloadCSV2() {
+            downloadFile('prog1.docx', 'prog1.docx');
+        }
+
+        function downloadCSV3() {
+            downloadFile('prog4.docx', 'prog4.docx');
+        }
+
+        function downloadCSV4() {
+            downloadFile('prog6.docx', 'prog6.docx');
+        }
+        function downloadCSV4() {
+            downloadFile('prog6.docx', 'prog6.docx');
+        }
+        function downloadCSV4() {
+            downloadFile('prog6.docx', 'prog6.docx');
+        }
+        function downloadCSV4() {
+            downloadFile('prog6.docx', 'prog6.docx');
+        }
+        function downloadCSV4() {
+            downloadFile('prog6.docx', 'prog6.docx');
+        }
+        function downloadCSV4() {
+            downloadFile('prog6.docx', 'prog6.docx');
+        }
+        function downloadCSV4() {
+            downloadFile('prog6.docx', 'prog6.docx');
+        }
+        function downloadCSV4() {
+            downloadFile('prog6.docx', 'prog6.docx');
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -50,19 +129,16 @@
     </header>
 
     <main>
-        <h3>Program Links</h3>
-        <p><a href="dsp1.html" target="_blank">Module-1 P-1 Student performance in the final exam</a></p>
-        <p><a href="dsp2.html" target="_blank">Module-1 P-2 Histogram to check frequency distribution</a></p>
-        <p><a href="dsp3.html" target="_blank">Module-2 P-3 Kaggle Book Dataset</a></p>
-        <p><a href="dsp4.html" target="_blank">Module-3 P-4 Logistic Regression on iris dataset</a></p>
-        <p><a href="dsp5.html" target="_blank">Module-3 P-5 SVM Classifier on iris dataset</a></p>
-        <p><a href="dsp6.html" target="_blank">Module-4 P-6 Decision Tree based on ID3</a></p>
-        <p><a href="dsp7.html" target="_blank">Module-4 P-7 Clustering Spral.txt dataset</a></p>
-        <p><a href="dsp8.html" target="_blank">Module-5 P-8 Simple Web-Scrapping in social media</a></p>
-        <p>----------------------------------------------------------------</p>
-        <h3><p><a href="VIVA DSA Laboratory.pdf" target="_blank"> DSA Viva PDF</p></h3>
-        <p><a href="https://drive.google.com/drive/folders/1bpohYHsJzDjE9oyINkAcYD6oerh2XbPT?usp=sharing" target="_blank"> DSA Programs PDF</p>
-        <p><a href="https://moodle.sit.ac.in/blog/data-science-and-its-applications-21ad62/#m4p2" target="_blank"> MYBLOGOSPHERE</p>
+        <h2>'21ISL66 - SOFTWARE TESTING LABORATORY'</h2>
+        <div class="code-container">
+            <pre id="code-block">
+            <h2><a href="https://drive.google.com/drive/folders/1-Mp9O7WsKUMidEWSEbXwM6lpKBuWBrlf" target="_blank">Software Testing Drive</a></h2>
+            </pre>
+            <button class="download-button" onclick="downloadCSV1()">Download Software Testing Lab Manual</button>
+            <button class="download-button" onclick="downloadCSV2()">Prog1.docx</button>
+            <button class="download-button" onclick="downloadCSV3()">Prog4.docx</button>
+            <button class="download-button" onclick="downloadCSV4()">Prog6.docx</button>
+        </div>
     </main>
 
     <footer>
