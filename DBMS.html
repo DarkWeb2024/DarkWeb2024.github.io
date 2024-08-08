@@ -20,16 +20,6 @@
             border-bottom: 1px solid #333;
         }
 
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            margin: 0 15px;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
         main {
             padding: 20px;
         }
@@ -59,109 +49,79 @@
 
         .download-button {
             display: block;
-            background-color: #333;
+            background-color: #1e90ff;
             color: #fff;
             border: none;
-            padding: 5px 10px;
+            padding: 10px 20px;
+            margin: 10px 0;
+            text-align: center;
+            text-decoration: none;
             cursor: pointer;
-            margin: 5px 0;
         }
 
         .download-button:hover {
-            background-color: #555;
+            background-color: #0f5a92;
         }
     </style>
-</head>
-<body>
-    <header>
-        <h1>Dark Web</h1>
-        <nav>
-            <a href="#"></a>
-            <a href="#"></a>
-            <a href="#"></a>
-            <a href="#"></a>
-        </nav>
-    </header>
-
-    <main>
-        <h2>Download DBMS Program Files</h2>
-        <div class="code-container">
-            <pre id="code-block">
-
-            </pre>
-            <h3>DATABASE manual</h3>
-            <button class="download-button" onclick="downloadCSV1()">DBMSManual.pdf</button>
-            <button class="download-button" onclick="downloadCSV2()">VIVAQ</button>
-            <h3>LIBRARY DATABASE</h3>
-            <button class="download-button" onclick="downloadCSV3()">DEXP1.docx</button>
-            <button class="download-button" onclick="downloadCSV4()">Texp1.txt</button>
-            <h3>ORDER DATABASE</h3>
-            <button class="download-button" onclick="downloadCSV5()">DEXP2.docx</button>
-            <button class="download-button" onclick="downloadCSV6()">Texp2.txt</button>
-            <h3>MOVIE DATABASE </h3>
-            <button class="download-button" onclick="downloadCSV7()">DEXP3.docx</button>
-            <button class="download-button" onclick="downloadCSV8()">Texp3.txt</button>
-            <h3>COLLEGE DATABASE</h3>
-            <button class="download-button" onclick="downloadCSV9()">DEXP4.docx</button>
-            <button class="download-button" onclick="downloadCSV10()">Texp4.txt</button>
-            <h3>COMPANY DATABASE</h3>
-            <button class="download-button" onclick="downloadCSV11()">DEXP5.docx</button>
-            <button class="download-button" onclick="downloadCSV12()">Texp5.txt</button>
-            <h3>-------------------------------------</h3>
-            <button class="download-button" onclick="downloadCSV13()">Download CSV 13</button>
-            <button class="download-button" onclick="downloadCSV14()">Download CSV 14</button>
-            <button class="download-button" onclick="downloadCSV15()">Download CSV 15</button>
-            <button class="download-button" onclick="downloadCSV16()">Download CSV 16</button>
-            <button class="download-button" onclick="downloadCSV17()">Download CSV 17</button>
-            <button class="download-button" onclick="downloadCSV18()">Download CSV 18</button>
-        </div>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 Dark Web. All rights reserved.</p>
-    </footer>
-
     <script>
-        async function downloadCSV(fileName) {
-            const csvLink =exp5.txt,exp4.txt;  // CSV file link
+        async function downloadFile(url, filename) {
             try {
-                const response = await fetch(csvLink);
+                const response = await fetch(url);
                 if (!response.ok) {
                     throw new Error('Network response was not ok ' + response.statusText);
                 }
                 const blob = await response.blob();
-                const url = window.URL.createObjectURL(blob);
+                const blobUrl = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.style.display = 'none';
-                a.href = url;
-                a.download =exp5.txt,exp4.txt;  // Use fileName for the download
+                a.href = blobUrl;
+                a.download = filename;
                 document.body.appendChild(a);
                 a.click();
-                window.URL.revokeObjectURL(url);
+                window.URL.revokeObjectURL(blobUrl);
                 document.body.removeChild(a);
             } catch (error) {
                 console.error('There has been a problem with your fetch operation:', error);
             }
         }
 
-        function downloadCSV1() { downloadCSV('DBMSManual.pdf'); }
-        function downloadCSV2() { downloadCSV('VIVAQ'); }
-        function downloadCSV3() { downloadCSV('DEXP1.docx'); }
-        function downloadCSV4() { downloadCSV('Texp1.txt'); }
-        function downloadCSV5() { downloadCSV('DEXP2.docx'); }
-        function downloadCSV6() { downloadCSV('Texp2.txt'); }
-        function downloadCSV7() { downloadCSV('DEXP3.docx'); }
-        function downloadCSV8() { downloadCSV('Texp3.txt'); }
-        function downloadCSV9() { downloadCSV('DEXP4.docx'); }
-        function downloadCSV10() { downloadCSV('Texp4.txt'); }
-        function downloadCSV11() { downloadCSV('DEXP5.docx'); }
-        function downloadCSV12() { downloadCSV('Texp5.txt'); }
-        function downloadCSV13() { downloadCSV('file13.csv'); }
-        function downloadCSV14() { downloadCSV('file14.csv'); }
-        function downloadCSV15() { downloadCSV('file15.csv'); }
-        function downloadCSV16() { downloadCSV('file16.csv'); }
-        function downloadCSV17() { downloadCSV('file17.csv'); }
-        function downloadCSV18() { downloadCSV('file18.csv'); }
+        function downloadCSV1() {
+            downloadFile('DBMSManual.pdf', 'DBMSManual.pdf');
+        }
+
+        function downloadCSV2() {
+            downloadFile('prog1.docx', 'prog1.docx');
+        }
+
+        function downloadCSV3() {
+            downloadFile('prog4.docx', 'prog4.docx');
+        }
+
+        function downloadCSV4() {
+            downloadFile('prog6.docx', 'prog6.docx');
+        }
     </script>
+</head>
+<body>
+    <header>
+        <h1>Dark Web</h1>
+    </header>
+
+    <main>
+        <h2>'21ISL66 - SOFTWARE TESTING LABORATORY'</h2>
+        <div class="code-container">
+            <pre id="code-block">
+            <h2><a href="https://drive.google.com/drive/folders/1-Mp9O7WsKUMidEWSEbXwM6lpKBuWBrlf" target="_blank">Software Testing Drive</a></h2>
+            </pre>
+            <button class="download-button" onclick="downloadCSV1()">DBMSManual.pdf</button>
+            <button class="download-button" onclick="downloadCSV2()">Prog1.docx</button>
+            <button class="download-button" onclick="downloadCSV3()">Prog4.docx</button>
+            <button class="download-button" onclick="downloadCSV4()">Prog6.docx</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Dark Web. All rights reserved.</p>
+    </footer>
 </body>
 </html>
